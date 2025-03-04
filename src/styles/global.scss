@@ -1,0 +1,19 @@
+@import 'styles/adaptive.scss';
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: $backgroundPrimary;
+}
+
+h1 {
+  margin: 0;
+  @include h1;
+  color: $darkBlue;
+}

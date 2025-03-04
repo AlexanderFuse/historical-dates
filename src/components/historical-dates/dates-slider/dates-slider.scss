@@ -1,0 +1,182 @@
+@import '../../../styles/adaptive.scss';
+@import '../../../styles/colors.scss';
+@import '../../../styles/fonts.scss';
+
+.dates-slider-wrapper {
+  height: 200px;
+  overflow: hidden;
+  margin-left: 83px;
+  margin-top: 56px;
+  margin-right: 83px;
+  cursor: grab;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  @include max-screen-desktop-l() {
+    margin-left: 60px;
+  }
+  @include max-screen-desktop-s() {
+    margin-left: 32px;
+  }
+  @include max-screen-tablet() {
+    margin-left: -20px;
+    margin-right: -20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100dvw;
+    height: 300px;
+  }
+  :active {
+    cursor: grabbing;
+  }
+
+  .dates-slider-period-name {
+    display: none;
+
+    @include max-screen-tablet() {
+      display: block;
+      @include period-name;
+      color: $darkBlue;
+      margin-left: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  .dates-slider-divider {
+    display: none;
+    @include max-screen-tablet() {
+      display: block;
+      padding-bottom: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+      border-top: 1px solid $borderTertiary;
+      position: absolute;
+      width: 90dvw;
+    }
+  }
+
+  .dates-slider {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    width: 100%;
+    .slide {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      &__year {
+        @include slider-year;
+        color: #3877EE;
+      }
+      &__text {
+        @include reg-20;
+        color: $darkBlue;
+      }
+    }
+    &__button {
+      position: absolute;
+      z-index: 10;
+      bottom: 24%;
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer !important;
+      background-color: $white;
+      -webkit-box-shadow: 0 0 10px 2px rgba(56, 119, 238, 0.1);
+      -moz-box-shadow: 0 0 10px 2px rgba(56, 119, 238, 0.1);
+      box-shadow: 0 0 10px 2px rgba(56, 119, 238, 0.1);
+      @include max-screen-desktop-l() {
+        bottom: 19%;
+        width: 32px;
+        height: 32px;
+      }
+      @include max-screen-desktop-s() {
+        bottom: 20%;
+      }
+      @include max-screen-tablet() {
+        display: none;
+      }
+    }
+    &__arrow {
+      border: solid $blue;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 3px;
+    }
+    &__prev {
+      transform: translate(20%, 0) rotate(135deg) ;
+      -webkit-transform: translate(20%, 0) rotate(135deg) ;
+    }
+    &__next {
+      transform: translate(-20%, 0) rotate(-45deg);
+      -webkit-transform: translate(-20%, 0) rotate(-45deg);
+    }
+  }
+  .button__left {
+    left: 1.5%;
+  }
+  .button__right {
+    right: 1.5%;
+  }
+  .swiper-button-disabled {
+    opacity: 0 !important;
+    transition: opacity 0.3s;
+  }
+
+}
+
+.swiper {
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+  height: 240px;
+  @include max-screen-tablet() {
+    margin-top: 20px;
+  }
+}
+
+.swiper-wrapper {
+  @include max-screen-tablet() {
+    .swiper-slide {
+      width: 55% !important;
+    }
+  }
+}
+
+.swiper-slide {
+  @include max-screen-tablet() {
+    opacity: 0.4 !important;
+    transition: opacity 0.3s !important;
+  }
+}
+
+.swiper-slide-active {
+  @include max-screen-tablet() {
+    opacity: 1 !important;
+    transition: opacity 0.3s !important;
+  }
+}
+
+.swiper-pagination {
+  display: none;
+  bottom: 25px !important;
+  @include max-screen-tablet() {
+    display: block;
+  }
+  .swiper-pagination-bullet {
+    background-color: $darkBlue;
+    width: 6px !important;
+    height: 6px !important;
+    opacity: 0.4 !important;
+  }
+  .swiper-pagination-bullet-active {
+    opacity: 1 !important;
+  }
+}
+
+
+

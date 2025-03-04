@@ -1,0 +1,257 @@
+@import '../../../styles/adaptive.scss';
+@import '../../../styles/colors.scss';
+@import '../../../styles/fonts.scss';
+
+$transitionSpeed: 0.3s;
+
+@mixin circle-active {
+  width: 56px;
+  height: 56px;
+  border: 1px solid $borderSecondary;
+  background-color: $backgroundPrimary;
+  transition: width $transitionSpeed, height $transitionSpeed, background-color $transitionSpeed;
+  @include max-screen-desktop-l() {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@mixin period-number-active {
+  opacity: 1;
+  transition: opacity $transitionSpeed;
+}
+
+.wheel {
+  position: relative;
+  z-index: 10;
+  &__years {
+    margin-left: -40px;
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    margin-top: 96px;
+    @include max-screen-desktop-l() {
+      gap: 80px;
+      margin-left: -20px;
+      margin-top: 100px;
+    }
+    @include max-screen-desktop-s() {
+      gap: 40px;
+      margin-left: 0;
+      margin-top: 100px;
+    }
+    @include max-screen-tablet() {
+      margin-top: 80px;
+      justify-content: unset;
+    }
+    @include max-screen-mobile() {
+      gap: 32px;
+    }
+    .year {
+      @include years-range;
+      &__start {
+        color: $iris;
+      }
+      &__end {
+        color: $fuschia;
+      }
+    }
+  }
+
+  &__wheel {
+    position: absolute;
+    left: 48.2%;
+    top: 50%;
+    @include max-screen-tablet() {
+      display: none;
+    }
+    .wrapper {
+      position: relative;
+      height: 0;
+    }
+    .item {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      z-index: 1;
+      cursor: pointer;
+      &__circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        border-radius: 100%;
+        width: 8px;
+        height: 8px;
+        background-color: $darkBlue;
+        transition: width $transitionSpeed, height $transitionSpeed;
+      }
+      &__period-number {
+        position: relative;
+        z-index: 5;
+        @include period-number;
+        color: $darkBlue;
+        text-align: center;
+        line-height: 50px;
+        font-size: 24px;
+        opacity: 0;
+        transition: opacity $transitionSpeed;
+      }
+      &__period-name {
+        position: absolute;
+        left: 140%;
+        top: 50%;
+        transform: translate(0,-50%);
+        width: 200px;
+        @include period-name;
+        color: $darkBlue;
+        opacity: 0;
+        transition: opacity $transitionSpeed;
+      }
+      &--active {
+        cursor: default;
+        pointer-events: none;
+        .item__circle {
+          @include circle-active;
+        }
+        .item__period-number {
+          @include period-number-active;
+        }
+        .item__period-name {
+          opacity: 1;
+          transition: opacity $transitionSpeed;
+          transition-delay: 0.8s;
+        }
+      }
+      &:hover {
+        .item__circle {
+          @include circle-active;
+        }
+        .item__period-number {
+          @include period-number-active;
+        }
+      }
+
+    }
+    svg {
+      height: 530px;
+      width: 530px;
+      overflow: visible;
+      z-index: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      @include max-screen-desktop-l() {
+        height: 420px;
+        width: 420px;
+      }
+      @include max-screen-desktop-s() {
+        height: 320px;
+        width: 320px;
+      }
+    }
+    .st0 {
+      margin-top: 3px;
+      margin-left: 3px;
+      fill: none;
+      stroke: $darkBlue;
+      opacity: 0.2;
+      stroke-width: 0.2;
+      stroke-miterlimit:1;
+    }
+
+  }
+}
+
+.arrow-controls {
+  margin-left: 83px;
+  margin-top: 120px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @include max-screen-desktop-l() {
+    margin-left: 60px;
+  }
+  @include max-screen-desktop-s() {
+    margin-left: 32px;
+  }
+  @include max-screen-tablet() {
+    margin-left: unset;
+    position: absolute;
+    bottom: 20px;
+    gap: 10px;
+    z-index: 20;
+  }
+  &__current-and-total {
+    @include reg-14;
+    color: $darkBlue;
+  }
+  &__arrows {
+    display: flex;
+    gap: 20px;
+    @include max-screen-desktop-s() {
+      gap: 16px;
+    }
+    @include max-screen-tablet() {
+      gap: 8px;
+    }
+  }
+  .arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border: 1px solid $borderSecondary;
+    background-color: $backgroundPrimary;
+    transition: background-color $transitionSpeed;
+    border-radius: 100%;
+    cursor: pointer;
+    @include max-screen-desktop-l() {
+      width: 40px;
+      height: 40px;
+    }
+    @include max-screen-desktop-s() {
+      width: 32px;
+      height: 32px;
+    }
+    @include max-screen-tablet() {
+      width: 25px;
+      height: 25px;
+    }
+    &:hover {
+      background-color: $white;
+    }
+    .icon {
+      border: solid $darkBlue;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 4px;
+      @include max-screen-desktop-s() {
+        padding: 3px;
+      }
+      @include max-screen-tablet() {
+        padding: 2px;
+      }
+    }
+    .left {
+      transform: translate(20%, 0) rotate(135deg) ;
+      -webkit-transform: translate(20%, 0) rotate(135deg);
+      @include max-screen-tablet() {
+        transform: translate(10%, 5%) rotate(135deg) ;
+        -webkit-transform: translate(10%, 5%) rotate(135deg);
+      }
+    }
+    .right {
+      transform: translate(-20%, 10%) rotate(-45deg);
+      -webkit-transform: translate(-20%, 10%) rotate(-45deg);
+      @include max-screen-tablet() {
+        transform: translate(-10%, 5%) rotate(-45deg);
+        -webkit-transform: translate(-10%, 5%) rotate(-45deg);
+      }
+    }
+  }
+}

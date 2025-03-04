@@ -1,0 +1,102 @@
+@import '../../styles/adaptive.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/fonts.scss';
+
+.historical-dates {
+  margin-left: 320px;
+  margin-right: 160px;
+  border-left: 1px solid $borderPrimary;
+  border-right: 1px solid $borderPrimary;
+  position: relative;
+  height: 100dvh;
+  @include max-screen-desktop-l() {
+    height: 960px;
+    margin-left: 200px;
+    margin-right: 100px;
+  }
+  @include max-screen-desktop-s() {
+    height: 800px;
+    margin-left: 100px;
+    margin-right: 60px;
+  }
+  @include max-screen-tablet() {
+    height: 100dvh;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-left: unset;
+    border-right: unset;
+    position: relative;
+  }
+  &__title {
+    padding-top: 177px;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    gap: 78px;
+    @include max-screen-desktop-l() {
+      padding-top: 120px;
+      gap: 60px;
+    }
+    @include max-screen-desktop-s() {
+      padding-top: 62px;
+      gap: 30px;
+    }
+    .title {
+      &__border {
+        width: 5px;
+        height: 120px;
+        background: rgb(56,119,238);
+        background: linear-gradient(180deg, rgba(56,119,238,1) 0%, rgba(239,93,168,1) 100%);
+        @include max-screen-desktop-l() {
+          width: 4px;
+          height: 84px;
+        }
+        @include max-screen-desktop-s() {
+          width: 3px;
+          height: 60px;
+        }
+        @include max-screen-tablet() {
+          display: none;
+        }
+      }
+      &__text {
+        margin-top: -10px;
+        @include max-screen-desktop-s() {
+          margin-top: -7px;
+        }
+      }
+    }
+  }
+
+  .hairline {
+    position: absolute;
+    z-index: 0;
+    @include max-screen-tablet() {
+      display: none;
+    }
+    &--horizontal {
+      border-top: 1px solid $borderPrimary;
+      width: 100%;
+      height: 60%;
+      bottom: 0;
+      @include max-screen-desktop-l() {
+        top: 39.7%;
+      }
+      @include max-screen-desktop-s() {
+        top: 35%;
+      }
+    }
+    &--vertical {
+      border-right: 1px solid $borderPrimary;
+      width: 50%;
+      height: 100%;
+      top: 0;
+      @include max-screen-desktop-l() {
+        width: 51%;
+      }
+    }
+  }
+
+
+
+}
